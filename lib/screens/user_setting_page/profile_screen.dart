@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/user_setting_page/settings_screen.dart';
+import 'package:flutter_application_1/screens/season_pass_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -48,6 +49,21 @@ class ProfileScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Divider(),
+            ListTile(
+              leading: Icon(Icons.card_membership),
+              title: Text(
+                '시즌패스',
+                style: TextStyle(
+                  fontFamily: 'Gamtanload',
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SeasonPassScreen()),
+                );
+              },
+            ),
             ListTile(
               leading: Icon(Icons.edit),
               title: Text(

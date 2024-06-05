@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // 추가
 import 'package:flutter_application_1/screens/home_screen.dart';
 import 'package:flutter_application_1/screens/community/community_screen.dart';
 import 'package:flutter_application_1/screens/map_screen.dart';
@@ -6,7 +7,15 @@ import 'package:flutter_application_1/screens/shopping/shopping_screen.dart';
 import 'package:flutter_application_1/screens/user_setting_page/profile_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized(); // 추가
+  SystemChrome.setPreferredOrientations([
+    // 추가
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    // 추가
+    runApp(MyApp());
+  }); // 추가
 }
 
 class MyApp extends StatelessWidget {

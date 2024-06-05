@@ -9,9 +9,10 @@ class AdsSection extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
         ),
         Container(
+          width: MediaQuery.of(context).size.width, // 화면의 너비에 맞춤
           height: 200,
           child: Image.asset(
-            'assets/test_image/advertisement.png',
+            'assets/icons/boys_fishing_banner.jpg',
             fit: BoxFit.cover,
           ),
         ),

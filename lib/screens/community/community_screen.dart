@@ -25,7 +25,7 @@ class CommunityScreen extends StatelessWidget {
               (context, index) {
                 return _buildPostItem(context);
               },
-              childCount: 10, // 게시물 수
+              childCount: 2, // 게시물 수
             ),
           ),
         ],
@@ -49,7 +49,8 @@ class CommunityScreen extends StatelessWidget {
         // 사용자 정보
         ListTile(
           leading: CircleAvatar(
-            backgroundImage: AssetImage('assets/profile_image.png'), // 프로필 이미지
+            backgroundImage: AssetImage(
+                'assets/test_image/community_user_image.png'), // 프로필 이미지
           ),
           title: Text('사용자 이름'),
           subtitle: Text('2시간 전'),
@@ -57,7 +58,7 @@ class CommunityScreen extends StatelessWidget {
         ),
         // 게시글 이미지
         Image.asset(
-          'assets/example_image.jpg', // 게시글 이미지
+          'assets/test_image/community_page_image.png', // 게시글 이미지
           fit: BoxFit.cover,
         ),
         // 좋아요, 댓글, 공유 아이콘
