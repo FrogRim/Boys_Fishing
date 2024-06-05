@@ -1,32 +1,44 @@
+// fishing_gear_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/shopping/widgets/category_section.dart';
+import 'package:flutter_application_1/screens/shopping/widgets/recommended_products.dart';
+import 'package:flutter_application_1/screens/shopping/widgets/ads_section.dart';
+import 'package:flutter_application_1/db_helper.dart';
 
 class FishingGearPage extends StatelessWidget {
+  final DBHelper dbHelper;
+  final bool isSearching;
+  final Function(bool) toggleSearch;
+
+  FishingGearPage(
+      {required this.dbHelper,
+      required this.isSearching,
+      required this.toggleSearch});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
-        children: [
-          ListTile(
-            leading: Image.asset('assets/test_image/fishing_rod.jpg',
-                width: 50, height: 50, fit: BoxFit.cover),
-            title: Text('낚시대'),
-            subtitle: Text('고품질 낚시대'),
-            onTap: () {
-              // 상세 페이지로 이동
-            },
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: () => toggleSearch(false),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                AdsSection(),
+                CategorySection(),
+                RecommendedProducts(),
+              ],
+            ),
           ),
-          ListTile(
-            leading: Image.asset('assets/test_image/fishing_reel.jpg',
-                width: 50, height: 50, fit: BoxFit.cover),
-            title: Text('릴'),
-            subtitle: Text('내구성 좋은 릴'),
-            onTap: () {
-              // 상세 페이지로 이동
-            },
+        ),
+        if (isSearching)
+          GestureDetector(
+            onTap: () => toggleSearch(false),
+            child: Container(
+              color: Colors.black54,
+            ),
           ),
-          // 다른 낚시 용품 추가
-        ],
-      ),
+      ],
     );
   }
 }

@@ -3,7 +3,8 @@ import 'package:flutter_application_1/screens/shopping/widgets/category_section.
 import 'package:flutter_application_1/screens/shopping/widgets/recommended_products.dart';
 import 'package:flutter_application_1/screens/shopping/widgets/ads_section.dart';
 import 'package:flutter_application_1/db_helper.dart';
-import 'package:flutter_application_1/widgets/search_app_bar.dart'; // SearchAppBar import
+import 'package:flutter_application_1/screens/shopping/fishing_gear_page.dart';
+import 'package:flutter_application_1/screens/shopping/travel_packages_page.dart';
 
 class ShoppingScreen extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class ShoppingScreen extends StatefulWidget {
 class _ShoppingScreenState extends State<ShoppingScreen> {
   final DBHelper dbHelper = DBHelper();
   bool _isSearching = false;
+  int _selectedIndex = 0;
 
   void _toggleSearch(bool isSearching) {
     setState(() {
@@ -34,35 +36,94 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
     print(products);
   }
 
+  void _onTabTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     _insertSampleProduct(); // 샘플 데이터 삽입
     _getProducts(); // 제품 목록 조회
 
     return Scaffold(
-      appBar: SearchAppBar(
-        title: "보이스 피싱 샵",
-        onSearchToggle: _toggleSearch, // 콜백 함수 전달
+      appBar: AppBar(
+        title: _isSearching
+            ? TextField(
+                autofocus: true,
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.search),
+                ),
+              )
+            : Row(
+                children: [
+                  GestureDetector(
+                    onTap: () => _onTabTapped(0),
+                    child: Text(
+                      '  샵   ',
+                      style: TextStyle(
+                        color:
+                            _selectedIndex == 0 ? Colors.black : Colors.black54,
+                        fontWeight: _selectedIndex == 0
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                      ),
+                    ),
+                  ),
+                  Text('\|', style: TextStyle(color: Colors.black54)),
+                  GestureDetector(
+                    onTap: () => _onTabTapped(1),
+                    child: Text(
+                      '   여행  ',
+                      style: TextStyle(
+                        color:
+                            _selectedIndex == 1 ? Colors.black : Colors.black54,
+                        fontWeight: _selectedIndex == 1
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+        actions: [
+          if (!_isSearching)
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () => _toggleSearch(true),
+              color: Colors.black,
+            ),
+          if (_isSearching)
+            IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () => _toggleSearch(false),
+              color: Colors.black,
+            ),
+        ],
       ),
       body: Stack(
         children: [
           GestureDetector(
             onTap: () => _toggleSearch(false),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  AdsSection(),
-                  CategorySection(),
-                  RecommendedProducts(),
-                ],
-              ),
+            child: IndexedStack(
+              index: _selectedIndex,
+              children: [
+                FishingGearPage(
+                    dbHelper: dbHelper,
+                    isSearching: _isSearching,
+                    toggleSearch: _toggleSearch),
+                TravelPackagesPage(),
+              ],
             ),
           ),
           if (_isSearching)
             GestureDetector(
               onTap: () => _toggleSearch(false),
               child: Container(
-                color: Colors.black54, // 블라인드 처리
+                color: Colors.black54,
               ),
             ),
         ],
