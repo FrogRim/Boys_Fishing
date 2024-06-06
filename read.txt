@@ -1,0 +1,10 @@
+- lib>screen>map
+- assets>weather
+- pubspec.yaml 수정
+
+  assets:
+      - assets\weather\weather.png
+      - assets\weather\cloud.json
+      - assets\weather\rain.json
+      - assets\weather\sunny.json
+      - assets\weather\thunder.json
