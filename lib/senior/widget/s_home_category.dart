@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/senior/s_shop/s_shopping.dart';
+import 'package:flutter_application_1/screens/shopping/travel_packages_page.dart';
 
-class CategorySection extends StatelessWidget {
-  final Function(int) onFishingTapped;
-  final Function(int) onTravelTapped;
-
-  CategorySection(
-      {required this.onFishingTapped, required this.onTravelTapped});
-
+class SeniorCategorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,20 +11,25 @@ class CategorySection extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           _buildCategoryIcon(context, 'assets/test_image/fishing_tool.jpg',
-              '낚시용품', onFishingTapped),
-          _buildCategoryIcon(
-              context, 'assets/test_image/treaval.jpg', '여행상품', onTravelTapped),
+              '낚시용품', SeniorShoppingScreen(initialIndex: 0)),
+          _buildCategoryIcon(context, 'assets/test_image/treaval.jpg', '여행상품',
+              SeniorShoppingScreen(initialIndex: 1)),
         ],
       ),
     );
   }
 
-  Widget _buildCategoryIcon(BuildContext context, String imagePath,
-      String label, Function(int) onTap) {
+  Widget _buildCategoryIcon(
+      BuildContext context, String imagePath, String label, Widget targetPage) {
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: InkWell(
-        onTap: () => onTap(3), // 전달된 콜백을 사용하여 인덱스를 변경
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => targetPage),
+          );
+        },
         child: Column(
           children: [
             CircleAvatar(

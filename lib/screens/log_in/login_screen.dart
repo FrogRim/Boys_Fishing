@@ -98,10 +98,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     onPressed: () {
                       // Perform login logic
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
-                      );
                     },
                     child: Text(
                       '로그인',

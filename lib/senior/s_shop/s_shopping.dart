@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/db_helper.dart';
-import 'package:flutter_application_1/screens/shopping/fishing_gear_page.dart';
+import 'package:flutter_application_1/senior/s_shop/s_gear_shop.dart';
 import 'package:flutter_application_1/screens/shopping/travel_packages_page.dart';
 
-class ShoppingScreen extends StatefulWidget {
+class SeniorShoppingScreen extends StatefulWidget {
   final int initialIndex;
 
-  ShoppingScreen({this.initialIndex = 0});
+  SeniorShoppingScreen({this.initialIndex = 0});
 
   @override
-  _ShoppingScreenState createState() => _ShoppingScreenState();
+  _SeniorShoppingScreenState createState() => _SeniorShoppingScreenState();
 }
 
-class _ShoppingScreenState extends State<ShoppingScreen> {
+class _SeniorShoppingScreenState extends State<SeniorShoppingScreen> {
   final DBHelper dbHelper = DBHelper();
   bool _isSearching = false;
   late int _selectedIndex;
@@ -21,6 +21,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
   void initState() {
     super.initState();
     _selectedIndex = widget.initialIndex;
+    _insertSampleProduct();
+    _getProducts();
   }
 
   void _toggleSearch(bool isSearching) {
@@ -39,7 +41,6 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
 
   void _getProducts() async {
     List<Map<String, dynamic>> products = await dbHelper.getProducts();
-    // 제품 목록 처리
     print(products);
   }
 
@@ -57,9 +58,6 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _insertSampleProduct(); // 샘플 데이터 삽입
-    _getProducts(); // 제품 목록 조회
-
     return Scaffold(
       appBar: AppBar(
         title: _isSearching
@@ -72,32 +70,13 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                         autofocus: true,
                         decoration: InputDecoration(
                           hintText: 'Search',
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blue[900]!,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blue[900]!,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blue[900]!,
-                            ),
-                          ),
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.search),
                         ),
                       ),
                     ),
                     IconButton(
-                      icon: Icon(Icons.search, color: Colors.black),
-                      onPressed: () {
-                        // 검색 기능 수행
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.close, color: Colors.black),
+                      icon: Icon(Icons.close),
                       onPressed: _closeSearch,
                     ),
                   ],
@@ -115,10 +94,12 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                         fontWeight: _selectedIndex == 0
                             ? FontWeight.bold
                             : FontWeight.normal,
+                        fontSize: 24,
                       ),
                     ),
                   ),
-                  Text('\|', style: TextStyle(color: Colors.black54)),
+                  Text('\|',
+                      style: TextStyle(color: Colors.black54, fontSize: 24)),
                   GestureDetector(
                     onTap: () => _onTabTapped(1),
                     child: Text(
@@ -129,6 +110,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                         fontWeight: _selectedIndex == 1
                             ? FontWeight.bold
                             : FontWeight.normal,
+                        fontSize: 24,
                       ),
                     ),
                   ),
@@ -137,7 +119,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         actions: [
           if (!_isSearching)
             IconButton(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.search, size: 30),
               onPressed: () => _toggleSearch(true),
               color: Colors.black,
             ),
@@ -150,7 +132,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
             child: IndexedStack(
               index: _selectedIndex,
               children: [
-                FishingGearPage(
+                SeniorFishingGearPage(
                     dbHelper: dbHelper,
                     isSearching: _isSearching,
                     toggleSearch: _toggleSearch),

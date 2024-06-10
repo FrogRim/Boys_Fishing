@@ -19,6 +19,9 @@ dependencies:
   cupertino_icons: ^1.0.6
   google_maps_flutter: ^2.6.1
   top_modal_sheet: ^2.1.0
+  shared_preferences: ^2.2.3
+
+
 
 dev_dependencies:
   flutter_test:

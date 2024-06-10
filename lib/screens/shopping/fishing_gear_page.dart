@@ -1,4 +1,3 @@
-// fishing_gear_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/shopping/widgets/category_section.dart';
 import 'package:flutter_application_1/screens/shopping/widgets/recommended_products.dart';

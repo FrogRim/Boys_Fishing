@@ -22,7 +22,12 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('지도'),
+        title: Text('피싱맵',
+            style: TextStyle(
+                fontFamily: 'Gamtanload',
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black)),
         backgroundColor: Colors.white,
       ),
       body: GoogleMap(
@@ -32,7 +37,7 @@ class _MapScreenState extends State<MapScreen> {
           zoom: 11.0,
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
         elevation: 5,
         backgroundColor: const Color.fromARGB(255, 51, 195, 235),
@@ -72,10 +77,9 @@ class DummyModal extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Image.asset(
-            'assets/weather.png',
+            'assets/icons/weather.png',
             width: 100,
-            height: 180,
-            fit: BoxFit.cover,
+            fit: BoxFit.fitHeight,
           ),
           const SizedBox(height: 20),
         ],

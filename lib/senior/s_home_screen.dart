@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/widgets/home_category_section.dart';
-import 'package:flutter_application_1/widgets/home_ads_section.dart';
-import 'package:flutter_application_1/widgets/home_community_preview.dart';
+import 'package:flutter_application_1/senior/widget/s_home_category.dart';
 
-class HomeScreen extends StatefulWidget {
-  final Function(int) onFishingTapped;
-  final Function(int) onTravelTapped;
-
-  HomeScreen({required this.onFishingTapped, required this.onTravelTapped});
-
+class SeniorHomeScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _SeniorHomeScreenState createState() => _SeniorHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SeniorHomeScreenState extends State<SeniorHomeScreen> {
   final List<String> notifications = [
     '알림 1: 새로운 댓글이 달렸습니다.',
     '알림 2: 새로운 좋아요가 있습니다.',
@@ -53,19 +46,22 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Boys Fishing',
+          '시니어 피싱',
           style: TextStyle(
             fontFamily: 'Gamtanload',
-            fontSize: 24,
+            fontSize: 28,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: Icon(Icons.notifications, size: 30),
             onPressed: () => _showNotifications(context),
+            color: Colors.black,
           ),
         ],
+        backgroundColor: Colors.white,
       ),
       body: CustomScrollView(
         slivers: [
@@ -73,15 +69,38 @@ class _HomeScreenState extends State<HomeScreen> {
             delegate: SliverChildListDelegate(
               [
                 AdsSection(),
-                CategorySection(
-                  onFishingTapped: widget.onFishingTapped,
-                  onTravelTapped: widget.onTravelTapped,
-                ),
+                SeniorCategorySection(),
                 CommunityPreview(),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AdsSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.grey[300],
+      child: Center(child: Image.asset('assets/test_image/advertisement.png')),
+    );
+  }
+}
+
+class CommunityPreview extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 150,
+      color: Colors.grey[300],
+      child: Center(
+        child: Text(
+          '커뮤니티 미리보기 섹션',
+          style: TextStyle(fontSize: 24, color: Colors.black),
+        ),
       ),
     );
   }

@@ -1,13 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/user_setting_page/settings_screen.dart';
 import 'package:flutter_application_1/screens/season_pass_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  bool isSeniorMode = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSeniorMode();
+  }
+
+  _loadSeniorMode() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isSeniorMode = prefs.getBool('isSeniorMode') ?? false;
+    });
+  }
+
+  _toggleSeniorMode(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isSeniorMode = value;
+      prefs.setBool('isSeniorMode', value);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('프로필'),
         actions: [
+          Text("시니어 모드"),
+          Switch(
+            value: isSeniorMode,
+            onChanged: _toggleSeniorMode,
+            activeColor: Colors.blue,
+          ),
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
