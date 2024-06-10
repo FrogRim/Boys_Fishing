@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // 일반모드 스크린
 import 'package:flutter_application_1/screens/home_screen.dart';
 import 'package:flutter_application_1/screens/community/community_screen.dart';
-import 'package:flutter_application_1/screens/map_screen.dart';
+import 'package:flutter_application_1/screens/map/map_screen.dart';
 import 'package:flutter_application_1/screens/shopping/shopping_screen.dart';
 import 'package:flutter_application_1/screens/user_setting_page/profile_screen.dart';
 
