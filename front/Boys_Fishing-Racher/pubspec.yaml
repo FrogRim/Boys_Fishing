@@ -1,0 +1,44 @@
+name: flutter_application_1
+description: "A new Flutter project."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sqflite: ^2.2.0+3
+  path_provider: ^2.0.11
+  flutter_animate: ^4.0.0
+  flutter_svg: ^1.0.3
+  animations: ^2.0.3
+  cupertino_icons: ^1.0.6
+  google_maps_flutter: ^2.6.1
+  top_modal_sheet: ^2.1.0
+  shared_preferences: ^2.1.0
+  http: ^0.13.3
+  provider: ^6.0.2
+  flutter_secure_storage: ^5.0.0
+  lottie: ^1.0.1
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/fonts/
+    - assets/test_image/
+
+  fonts:
+    - family: Gamtanload
+      fonts:
+        - asset: assets/fonts/gamtanload.otf
+        - asset: assets/fonts/gamtanload.ttf
