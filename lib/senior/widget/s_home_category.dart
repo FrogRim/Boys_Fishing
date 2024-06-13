@@ -6,7 +6,7 @@ class SeniorCategorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130,
+      height: 170,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
@@ -33,11 +33,11 @@ class SeniorCategorySection extends StatelessWidget {
         child: Column(
           children: [
             CircleAvatar(
-              radius: 38,
+              radius: 50,
               backgroundImage: AssetImage(imagePath),
             ),
             SizedBox(height: 8),
-            Text(label),
+            Text(label, style: TextStyle(fontSize: 22)),
             SizedBox(
               height: 5,
             ),

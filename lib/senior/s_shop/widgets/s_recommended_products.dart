@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RecommendedProducts extends StatelessWidget {
+class SeniorRecommendedProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,7 +61,7 @@ class ProductCard extends StatelessWidget {
         children: [
           Image.asset(
             imagePath,
-            height: 100,
+            height: 150,
             width: double.infinity,
             fit: BoxFit.cover,
           ),
@@ -71,7 +71,7 @@ class ProductCard extends StatelessWidget {
               name,
               style: TextStyle(
                 fontFamily: 'Gamtanload',
-                fontSize: 16,
+                fontSize: 22,
               ),
             ),
           ),
@@ -81,7 +81,7 @@ class ProductCard extends StatelessWidget {
               price,
               style: TextStyle(
                 fontFamily: 'Gamtanload',
-                fontSize: 14,
+                fontSize: 18,
                 color: Colors.grey,
               ),
             ),

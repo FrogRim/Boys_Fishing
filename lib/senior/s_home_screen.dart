@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/senior/widget/s_home_category.dart';
+import 'package:flutter_application_1/senior/widget/s_home_communtiy.dart';
 
 class SeniorHomeScreen extends StatefulWidget {
   @override
@@ -70,7 +71,7 @@ class _SeniorHomeScreenState extends State<SeniorHomeScreen> {
               [
                 AdsSection(),
                 SeniorCategorySection(),
-                CommunityPreview(),
+                SeniorCommunityPreview(),
               ],
             ),
           ),
@@ -86,22 +87,6 @@ class AdsSection extends StatelessWidget {
     return Container(
       color: Colors.grey[300],
       child: Center(child: Image.asset('assets/test_image/advertisement.png')),
-    );
-  }
-}
-
-class CommunityPreview extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      color: Colors.grey[300],
-      child: Center(
-        child: Text(
-          '커뮤니티 미리보기 섹션',
-          style: TextStyle(fontSize: 24, color: Colors.black),
-        ),
-      ),
     );
   }
 }

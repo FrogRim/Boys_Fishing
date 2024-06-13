@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CategorySection extends StatelessWidget {
+class SeniorCategorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
+      height: 160,
       margin: EdgeInsets.only(bottom: 16),
       child: ListView(
         scrollDirection: Axis.horizontal,
@@ -25,7 +25,7 @@ class CategorySection extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            radius: 38,
+            radius: 50,
             backgroundImage: AssetImage(imagePath),
           ),
           SizedBox(height: 8),
@@ -34,7 +34,7 @@ class CategorySection extends StatelessWidget {
             child: Text(
               label,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12),
+              style: TextStyle(fontSize: 18),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
             ),

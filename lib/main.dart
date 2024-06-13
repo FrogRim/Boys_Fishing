@@ -146,7 +146,7 @@ class _SeniorMainScreenState extends State<SeniorMainScreen> {
     super.initState();
     _widgetOptions = <Widget>[
       SeniorCommunityScreen(),
-      SeniorMapScreen(),
+      MapScreen(),
       SeniorHomeScreen(),
       SeniorShoppingScreen(),
       SeniorProfileScreen(),

@@ -25,7 +25,15 @@ class _MapScreenState extends State<MapScreen> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('지도'),
+          title: const Text(
+            '지도',
+            style: TextStyle(
+              fontFamily: 'Gamtanload',
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
           backgroundColor: Colors.white,
         ),
         body: GoogleMap(
@@ -43,6 +51,7 @@ class _MapScreenState extends State<MapScreen> {
           onPressed: _showTopModal,
         ),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 

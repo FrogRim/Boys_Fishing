@@ -27,7 +27,7 @@ class SeniorCommunityScreen extends StatelessWidget {
               (context, index) {
                 return _buildPostItem(context);
               },
-              childCount: 2, // 게시물 수
+              childCount: 1, // 게시물 수
             ),
           ),
         ],
